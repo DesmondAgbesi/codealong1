@@ -3,8 +3,8 @@ import React from "react";
 // import {Image} from "./components/Image";
 // import {Navbar} from "./components/Navbar";
 // import { Practice } from "./components/Practice";
-// import {TaskManager} from "./components/TaskManager"
-import Form from "./components/Form";
+// import Form from "./components/Form";
+import {TaskManager} from "./components/TaskManager"
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
     {/* <Navbar />
     <Button label="Home" />
     <Image /> */}
-    {/* <TaskManager /> */}
-    <Form />
+    <TaskManager />
+    {/* <Form /> */}
   </div>
   );
 }

@@ -1,24 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { v4 as uuid} from "uuid";
+
 import TaskItem from "./TaskItem";
 
 
 export const TaskManager = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const tasks = localStorage.getItem("tasks");
+    if (!tasks) return [];
+    return JSON.parse( tasks);
+  });
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input === "") return;
 
-    setTasks([input, ...tasks]);
+    const newTask ={
+      id: uuid(),
+      text: input,
+      completed: true,
+    };
+
+    setTasks([newTask, ...tasks]);
     setInput("");
   }
 
-  const handleDelete = idx => {
-    const newTasks = tasks.filter(task => task !== idx);
+  const handleDelete = (id) => {
+    const newTasks = tasks.filter(task => task.id !== id);
     setTasks(newTasks);
-  }
+  };
 
+    useEffect(() =>{
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
   return(
     <div className="h-screen bg-blue-600 flex justify-center items-center">
@@ -30,7 +46,7 @@ export const TaskManager = () => {
         <div className="space-y-2 overflow-y-auto h-56">
           {
             tasks.map((task) => (
-          <TaskItem task={task} handleDelete={handleDelete} />
+          <TaskItem key={task.id} task={task} handleDelete={handleDelete} />
             ))
           }
         </div>
@@ -38,3 +54,4 @@ export const TaskManager = () => {
     </div>
   )
 }
+
