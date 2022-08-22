@@ -2,7 +2,7 @@
 function Product({ product }){
   return(
 <div className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
+    <a>
         <img className="p-8 rounded-t-lg" src={product.category.image} alt="product image" />
     </a>
     <div className="px-5 pb-5">
