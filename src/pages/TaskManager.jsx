@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 import { v4 as uuid} from "uuid";
 
-import TaskItem from "./TaskItem";
+import TaskItem from "../components/TaskItem";
 
 
-export const TaskManager = () => {
+const TaskManager = () => {
   const [tasks, setTasks] = useState(() => {
     const tasks = localStorage.getItem("tasks");
     if (!tasks) return [];
@@ -54,4 +54,6 @@ export const TaskManager = () => {
     </div>
   )
 }
+
+export default TaskManager;
 

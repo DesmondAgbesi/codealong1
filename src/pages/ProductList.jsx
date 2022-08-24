@@ -1,10 +1,10 @@
 // import { useEffect, useState } from "react";//in built
 
 // import axios from "axios"; //third parties installed
-import Spinner from "./Spinner";
+import Spinner from "../components/Spinner";
 import useAxios from "../hooks/useAxios";
 
-import Product from "./Product"; //our own components
+import Product from "../components/Product"; //our own components
 
  function ProductList(){
   // const [products, setProducts] = useState([]);
@@ -28,7 +28,6 @@ import Product from "./Product"; //our own components
       data.map((data) =>(
         <Product product = {data} />
       )
-
       )
     }
   </div>

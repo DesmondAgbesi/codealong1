@@ -1,17 +1,40 @@
 import React from "react";
 import { NavItem } from "./NavItem.";
 
-export const Navbar = () => {
+const links = [
+  {
+    label: "Home",
+    to: "/",
+  },
+  {
+    label: "Products",
+    to: "/products",
+  },
+  {
+    label: "Task Manager",
+    to: "/task-manager",
+  },
+  {
+    label: "About",
+    to: "/about",
+  },
+  {
+    label: "Contact",
+    to: "/contact",
+  },
+]
+
+ const Navbar = () => {
   return(
-    <nav class="flex justify-between py-5 px-20 shadow-md">
-      <h3 class="font-bold text-ellipsis">Yorm</h3>
-      <ul class="flex gap-5">
-        <NavItem menu="Home" />
-        <NavItem menu="Products" />
-        <NavItem menu="Services" />
-        <NavItem menu="About" />
-        <NavItem menu="Contact" />
+    <nav className="flex justify-between py-5 px-20 shadow-md">
+      <h3 className="font-bold text-ellipsis">Yorm</h3>
+      <ul className="flex gap-5">
+        {
+          links.map((link, index) => <NavItem key={index} label={link.label} to={link.to}/>)
+        }
       </ul>
     </nav>
   );
 }
+
+export default Navbar;
