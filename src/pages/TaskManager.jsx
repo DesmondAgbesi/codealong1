@@ -3,14 +3,18 @@ import { useEffect, useState } from "react";
 import { v4 as uuid} from "uuid";
 
 import TaskItem from "../components/TaskItem";
+import { useTaskContext } from "../context/tasksContext";
+
 
 
 const TaskManager = () => {
-  const [tasks, setTasks] = useState(() => {
-    const tasks = localStorage.getItem("tasks");
-    if (!tasks) return [];
-    return JSON.parse( tasks);
-  });
+  // const [tasks, setTasks] = useState(() => {
+  //   const tasks = localStorage.getItem("tasks");
+  //   if (!tasks) return [];
+  //   return JSON.parse( tasks);
+  // });
+
+  const {tasks, setValue}  = useTaskContext();
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
@@ -23,13 +27,13 @@ const TaskManager = () => {
       completed: true,
     };
 
-    setTasks([newTask, ...tasks]);
+    setValue([newTask, ...tasks]);
     setInput("");
   }
 
   const handleDelete = (id) => {
-    const newTasks = tasks.filter(task => task.id !== id);
-    setTasks(newTasks);
+    const newTasks = tasks.filter((task) => task.id !==id);
+    setValue(newTasks);
   };
 
     useEffect(() =>{
